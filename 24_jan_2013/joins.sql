@@ -1,5 +1,5 @@
-use sys;
--- officer table
+-- use sys;
+/*-- officer table
 select * from officer;
 
 -- student table
@@ -39,19 +39,31 @@ RIGHT JOIN officer
 ON officer.officer_id = student.student_id;  
 
 
--- CRUD OPERATIONS USING STORED PROCDEURE
-create procedure sp_hello()
+-- CRUD OPERATIONS USING STORED PROCDEURE*/
+delimiter //
+create procedure sp_hello1()
+begin
 	 select 'hello world' as greetings;
+	-- SELECT officer.officer_name, officer.address, student.course_name  
+-- 	FROM officer  
+-- 	INNER JOIN student  
+-- 	ON officer.officer_id = student.student_id;
+end
+delimiter ;
 call sp_hello();
 
-create procedure sp_condition(in `signal` varchar(40))
+DELIMITER //
+create or replace procedure sp_condition(in signal_color varchar(50))
 begin
-	if `signal` = 'red' then
+	if signal_color = 'red' then
 		select 'stop' as result;
-	elseif `signal` = 'green' then
+    elseif signal_color = 'green' then
 		select 'go' as result;
 	end if;
-end
+end;
+-- call sp_condition('green');
+DELIMITER ;
+
         
         
 
